@@ -99,7 +99,6 @@ def UI(**kwargs):
         launch_kwargs['share'] = share
     if root_path:
         launch_kwargs['root_path'] = root_path
-    print(launch_kwargs)
     interface.launch(**launch_kwargs)
 
 
