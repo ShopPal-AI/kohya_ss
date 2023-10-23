@@ -86,6 +86,7 @@ def UI(**kwargs):
     inbrowser = kwargs.get('inbrowser', False)
     share = kwargs.get('share', False)
     server_name = kwargs.get('listen')
+    root_path = kwargs.get('root_path', '/')
 
     launch_kwargs['server_name'] = server_name
     if username and password:
@@ -96,6 +97,9 @@ def UI(**kwargs):
         launch_kwargs['inbrowser'] = inbrowser
     if share:
         launch_kwargs['share'] = share
+    if root_path:
+        launch_kwargs['root_path'] = root_path
+    print(launch_kwargs)
     interface.launch(**launch_kwargs)
 
 
@@ -136,7 +140,9 @@ if __name__ == '__main__':
     parser.add_argument(
         '--use-ipex', action='store_true', help='Use IPEX environment'
     )
-
+    parser.add_argument(
+        '--root_path', type=str, default="/", help='Root path of gradio UI'
+    )
     args = parser.parse_args()
 
     UI(
@@ -148,4 +154,5 @@ if __name__ == '__main__':
         listen=args.listen,
         headless=args.headless,
         language=args.language,
+        root_path=args.root_path,
     )
